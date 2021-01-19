@@ -1,0 +1,12 @@
+name: 'Run Renovate CLI'
+description: 'Run the Renovate CLI to find outdated dependencies'
+inputs:
+  github-token:
+    description: 'A GitHub API token. Must not be the github-actions token, otherwise not all PR checks will run.'
+    required: true
+  git-author:
+    description: 'Git author for commits, in the form "Name <email>"'
+    required: true
+runs:
+    using: 'node12'
+    main: 'dist/before/index.js'

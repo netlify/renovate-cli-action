@@ -1,0 +1,34 @@
+{
+  "name": "renovate-cli-action",
+  "version": "1.0.0",
+  "description": "Runs the renovate CLI in github actions",
+  "main": "index.js",
+  "scripts": {
+    "lint-staged": "pretty-quick --staged",
+    "stage-dist": "git add dist",
+    "test": "npm run typecheck",
+    "typecheck": "tsc --noEmit",
+    "build": "ncc build -o dist/before src/before.js"
+  },
+  "pre-commit": [
+    "lint-staged",
+    "typecheck",
+    "build",
+    "stage-dist"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0",
+    "execa": "^5.0.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.24.1",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.1.2",
+    "pretty-quick": "^3.1.0",
+    "typescript": "^4.0.3"
+  }
+}
