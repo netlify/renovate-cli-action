@@ -16,7 +16,7 @@ function run() {
     core.info(`Installing Renovate CLI`);
     result = execa.sync(
       `sudo`,
-      [`npm`, `install`, `--global`, `renovate@24.24.0`],
+      [`npm`, `install`, `--global`, `renovate@24.77.3`],
       {
         stdout: "inherit",
         stderr: "inherit",
