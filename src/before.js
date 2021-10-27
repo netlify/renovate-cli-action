@@ -29,26 +29,36 @@ function run() {
     }
 
     core.info(`Running Renovate`);
-    result = execa.sync(`renovate`, [
-      // Handy for troubleshooting
-      `--log-level`,
-      `debug`,
-      // Required for Rust private repositories
-      `--allow-custom-crate-registries`, `true`,
-      // Don't require an onboarding PR to be merged
-      `--onboarding`, `false`,
-      // Don't require a config to be present
-      `--require-config`, `false`,
-      // GitHub token
-      `--token`, githubToken,
-      // Git Author
-      `--git-author`, gitAuthor,
-      // Repository
-      repository
-    ], {
-      stdout: "inherit",
-      stderr: "inherit",
-    });
+    result = execa.sync(
+      `renovate`,
+      [
+        // Required for Rust private repositories
+        `--allow-custom-crate-registries`,
+        `true`,
+        // Don't require an onboarding PR to be merged
+        `--onboarding`,
+        `false`,
+        // Don't require a config to be present
+        `--require-config`,
+        `false`,
+        // GitHub token
+        `--token`,
+        githubToken,
+        // Git Author
+        `--git-author`,
+        gitAuthor,
+        // Repository
+        repository,
+      ],
+      {
+        stdout: "inherit",
+        stderr: "inherit",
+        env: {
+          // Handy for troubleshooting
+          LOG_LEVEL: "debug",
+        },
+      }
+    );
   } catch (error) {
     core.setFailed(error.message);
   }
