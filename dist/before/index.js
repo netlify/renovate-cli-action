@@ -8265,7 +8265,7 @@ function run() {
     core.info(`Installing Renovate CLI`);
     result = execa.sync(
       `sudo`,
-      [`npm`, `install`, `--global`, `renovate@24.77.3`],
+      [`npm`, `install`, `--global`, `renovate@28.11.1`],
       {
         stdout: "inherit",
         stderr: "inherit",
@@ -8283,8 +8283,7 @@ function run() {
       `--log-level`,
       `debug`,
       // Required for Rust private repositories
-      `--trust-level`,
-      `high`,
+      `--allow-custom-crate-registries`, `true`,
       // Don't require an onboarding PR to be merged
       `--onboarding`, `false`,
       // Don't require a config to be present
